@@ -1,0 +1,5 @@
+/* Profile */
+.profile-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; }
+@media (max-width: 900px) {
+  .profile-grid { grid-template-columns: 1fr; }
+}

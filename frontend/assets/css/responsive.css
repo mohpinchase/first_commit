@@ -1,0 +1,18 @@
+/* Responsive, mobile-first tweaks */
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 800px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .hero .container { grid-template-columns: 1fr; }
+  .hero-visual { height: 200px; }
+  .nav-links { display: none; }
+  .hamburger { display: inline-flex; }
+}
+
+@media (max-width: 520px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .section { padding: 42px 0; }
+  .navbar-inner { padding: 10px 0; }
+}

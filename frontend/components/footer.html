@@ -1,0 +1,23 @@
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="brand">
+        <span class="logo">🧠</span>
+        <span class="brand-text">UniPeer</span>
+      </div>
+      <p class="muted">AI-Powered Student Collaboration Platform</p>
+    </div>
+    <div class="footer-links">
+      <a href="/forums/index.html">Forums</a>
+      <a href="/resources/index.html">Resources</a>
+      <a href="/events/index.html">Events</a>
+      <a href="/profile/index.html">Profile</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© <span id="year"></span> UniPeer. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>

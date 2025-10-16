@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login • UniPeer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/auth.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
+</head>
+<body>
+  <div id="navbar-root" data-component="/components/navbar.html"></div>
+
+  <main class="auth-wrapper">
+    <div class="card auth-card">
+      <div class="auth-header">
+        <h1>Welcome back</h1>
+        <p class="muted">Login to your UniPeer account</p>
+      </div>
+      <form id="login-form">
+        <div class="field-group">
+          <label class="label" for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@university.edu" required />
+        </div>
+        <div class="field-group">
+          <label class="label" for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" required />
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Login</button>
+          <a class="btn btn-outline" href="/auth/register.html">Create account</a>
+        </div>
+      </form>
+      <div class="auth-footer">By continuing you agree to our terms.</div>
+    </div>
+  </main>
+
+  <div id="footer-root" data-component="/components/footer.html"></div>
+
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/auth.pages.js"></script>
+</body>
+</html>

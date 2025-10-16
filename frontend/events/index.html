@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events • UniPeer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/events.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
+</head>
+<body>
+  <div id="navbar-root" data-component="/components/navbar.html"></div>
+
+  <main class="section">
+    <div class="container">
+      <div class="card">
+        <h1>Events</h1>
+        <p class="muted">Discover workshops, talks, and hackathons.</p>
+      </div>
+
+      <section class="section">
+        <div class="event-grid">
+          <div class="card event-item">
+            <strong>AI Study Jam</strong>
+            <span class="muted">Fri, 5:00 PM</span>
+            <button class="btn btn-primary">Join</button>
+          </div>
+          <div class="card event-item">
+            <strong>Microeconomics Review</strong>
+            <span class="muted">Sat, 2:00 PM</span>
+            <button class="btn btn-primary">Join</button>
+          </div>
+          <div class="card event-item">
+            <strong>Resume Workshop</strong>
+            <span class="muted">Tue, 4:30 PM</span>
+            <button class="btn btn-primary">Join</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-root" data-component="/components/footer.html"></div>
+
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/events.js"></script>
+</body>
+</html>

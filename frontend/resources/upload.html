@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Resource • UniPeer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/resources.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
+</head>
+<body>
+  <div id="navbar-root" data-component="/components/navbar.html"></div>
+
+  <main class="section">
+    <div class="container">
+      <div class="card">
+        <h1>Upload Resource</h1>
+        <p class="muted">Share notes, cheat sheets, or links.</p>
+      </div>
+
+      <section class="section">
+        <form class="card" id="upload-form">
+          <div class="field-group">
+            <label class="label" for="title">Title</label>
+            <input id="title" name="title" type="text" placeholder="e.g., Discrete Math Notes" required />
+          </div>
+          <div class="field-group">
+            <label class="label" for="description">Description</label>
+            <textarea id="description" name="description" rows="4" placeholder="What is this resource about?" required></textarea>
+          </div>
+          <div class="form-row inline">
+            <div class="field-group">
+              <label class="label" for="type">Type</label>
+              <select id="type" name="type">
+                <option value="pdf">PDF</option>
+                <option value="link">Link</option>
+                <option value="image">Image</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="label" for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" placeholder="e.g., Algorithms" />
+            </div>
+          </div>
+          <div class="form-actions" style="justify-content:flex-end;">
+            <a class="btn btn-outline" href="/resources/index.html">Cancel</a>
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-root" data-component="/components/footer.html"></div>
+
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/resources.js"></script>
+  <script>
+    UniPeer.onReady(() => {
+      const form = document.getElementById('upload-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        UniPeer.toast('Upload submitted (demo)', 'success');
+        window.location.href = '/resources/index.html';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="/index.html" class="brand">
+      <span class="logo">🧠</span>
+      <span class="brand-text">UniPeer</span>
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/dashboard/index.html">Dashboard</a></li>
+      <li><a href="/forums/index.html">Forums</a></li>
+      <li><a href="/resources/index.html">Resources</a></li>
+      <li><a href="/events/index.html">Events</a></li>
+      <li><a href="/profile/index.html">Profile</a></li>
+    </ul>
+
+    <div class="actions">
+      <button class="btn btn-ghost" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+      <button class="btn btn-outline" id="logout-btn" data-requires-auth="true">Logout</button>
+      <a class="btn btn-primary" id="login-btn" href="/auth/login.html" data-hide-when-auth="true">Login</a>
+      <a class="btn btn-accent" id="register-btn" href="/auth/register.html" data-hide-when-auth="true">Register</a>
+    </div>
+  </div>
+
+  <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span>Menu</span>
+      <button class="close-drawer" id="close-drawer" aria-label="Close menu">✖</button>
+    </div>
+    <ul>
+      <li><a href="/dashboard/index.html">Dashboard</a></li>
+      <li><a href="/forums/index.html">Forums</a></li>
+      <li><a href="/resources/index.html">Resources</a></li>
+      <li><a href="/events/index.html">Events</a></li>
+      <li><a href="/profile/index.html">Profile</a></li>
+      <li class="divider"></li>
+      <li><button class="btn btn-ghost" id="theme-toggle-mobile">Toggle Theme</button></li>
+      <li><button class="btn btn-outline" id="logout-btn-mobile" data-requires-auth="true">Logout</button></li>
+      <li><a class="btn btn-primary" id="login-btn-mobile" href="/auth/login.html" data-hide-when-auth="true">Login</a></li>
+      <li><a class="btn btn-accent" id="register-btn-mobile" href="/auth/register.html" data-hide-when-auth="true">Register</a></li>
+    </ul>
+  </aside>
+</nav>

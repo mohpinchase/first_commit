@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard • UniPeer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/dashboard.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
+</head>
+<body>
+  <div id="navbar-root" data-component="/components/navbar.html"></div>
+
+  <main class="section">
+    <div class="container">
+      <div class="dashboard-hero">
+        <div class="card welcome">
+          <h1>Hello, <span id="user-name">Student</span> 👋</h1>
+          <p class="muted">Here are your recommendations and updates for today.</p>
+          <div class="stat-grid">
+            <div class="card stat">
+              <span class="muted">New Resources</span>
+              <strong>3</strong>
+            </div>
+            <div class="card stat">
+              <span class="muted">Forum Replies</span>
+              <strong>7</strong>
+            </div>
+            <div class="card stat">
+              <span class="muted">Upcoming Events</span>
+              <strong>2</strong>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Quick Actions</h3>
+          <div class="grid grid-2">
+            <a class="btn btn-primary" href="/resources/upload.html">Upload Resource</a>
+            <a class="btn btn-secondary" href="/forums/index.html">Ask a Question</a>
+            <a class="btn btn-accent" href="/events/index.html">Find Events</a>
+            <a class="btn btn-outline" href="/profile/index.html">Edit Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Recommended Resources</h3>
+            <ul id="rec-resources">
+              <li class="muted">Coming soon...</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Trending Forums</h3>
+            <ul id="trending-forums">
+              <li class="muted">Coming soon...</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Upcoming Events</h3>
+            <ul id="upcoming-events">
+              <li class="muted">Coming soon...</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-root" data-component="/components/footer.html"></div>
+
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>

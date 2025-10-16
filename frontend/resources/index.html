@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources • UniPeer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/resources.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
+</head>
+<body>
+  <div id="navbar-root" data-component="/components/navbar.html"></div>
+
+  <main class="section">
+    <div class="container">
+      <div class="card">
+        <h1>Resources</h1>
+        <p class="muted">Browse recommended study materials and notes.</p>
+      </div>
+
+      <section class="section">
+        <div class="resource-grid">
+          <div class="card resource-item">
+            <strong>Intro to Algorithms Notes</strong>
+            <span class="muted">PDF • 2.3 MB</span>
+            <button class="btn btn-primary">Download</button>
+          </div>
+          <div class="card resource-item">
+            <strong>Microeconomics Summary</strong>
+            <span class="muted">PDF • 1.1 MB</span>
+            <button class="btn btn-primary">Download</button>
+          </div>
+          <div class="card resource-item">
+            <strong>Statistics Cheatsheet</strong>
+            <span class="muted">PNG • 560 kB</span>
+            <button class="btn btn-primary">Download</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card">
+          <div class="grid grid-2">
+            <div>
+              <h3>Want to share?</h3>
+              <p class="muted">Upload your study materials to help others.</p>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:flex-end;">
+              <a class="btn btn-secondary" href="/resources/upload.html">Upload Resource</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-root" data-component="/components/footer.html"></div>
+
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/resources.js"></script>
+</body>
+</html>

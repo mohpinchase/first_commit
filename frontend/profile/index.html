@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile • UniPeer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/profile.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
+</head>
+<body>
+  <div id="navbar-root" data-component="/components/navbar.html"></div>
+
+  <main class="section">
+    <div class="container">
+      <div class="card">
+        <h1 id="profile-name">Your Profile</h1>
+        <p class="muted">Update your details and preferences.</p>
+      </div>
+
+      <section class="section">
+        <div class="profile-grid">
+          <form class="card" id="profile-form">
+            <div class="form-row inline">
+              <div class="field-group">
+                <label class="label" for="first_name">First name</label>
+                <input id="first_name" name="first_name" type="text" />
+              </div>
+              <div class="field-group">
+                <label class="label" for="last_name">Last name</label>
+                <input id="last_name" name="last_name" type="text" />
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="label" for="bio">Bio</label>
+              <textarea id="bio" name="bio" rows="4" placeholder="Tell others about yourself..."></textarea>
+            </div>
+            <div class="form-actions" style="justify-content:flex-end;">
+              <button class="btn btn-primary" type="submit">Save changes</button>
+            </div>
+          </form>
+
+          <div class="card">
+            <h3>Preferences</h3>
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+              <span>Theme</span>
+              <button class="btn btn-outline" id="theme-toggle-profile">Toggle Theme</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-root" data-component="/components/footer.html"></div>
+
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/profile.js"></script>
+  <script>
+    UniPeer.onReady(() => {
+      document.getElementById('theme-toggle-profile')?.addEventListener('click', UniPeer.toggleTheme);
+    });
+  </script>
+</body>
+</html>
