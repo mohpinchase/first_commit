@@ -1,0 +1,127 @@
+<!-- Navigation Bar Component -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <button class="hamburger-menu" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <a href="/index.html" class="navbar-brand">
+            🎓 UniPeer
+        </a>
+        
+        <ul class="navbar-menu">
+            <li class="navbar-menu-item">
+                <a href="/dashboard/index.html" class="navbar-link">Dashboard</a>
+            </li>
+            <li class="navbar-menu-item">
+                <a href="/resources/index.html" class="navbar-link">Resources</a>
+            </li>
+            <li class="navbar-menu-item">
+                <a href="/forums/index.html" class="navbar-link">Forums</a>
+            </li>
+            <li class="navbar-menu-item">
+                <a href="/events/index.html" class="navbar-link">Events</a>
+            </li>
+        </ul>
+        
+        <div class="navbar-actions">
+            <button class="btn-icon" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                🌙
+            </button>
+            
+            <div class="dropdown" id="user-dropdown">
+                <div class="navbar-user" onclick="toggleUserDropdown()">
+                    <div class="avatar-placeholder">U</div>
+                    <span class="user-name">User</span>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="/profile/index.html" class="dropdown-item">👤 Profile</a>
+                    <a href="/profile/index.html#settings" class="dropdown-item">⚙️ Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" onclick="handleLogout(event)">🚪 Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Sidebar for mobile -->
+<div class="sidebar-overlay" onclick="closeMobileMenu()"></div>
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">
+            🎓 UniPeer
+        </div>
+    </div>
+    
+    <nav class="sidebar-nav">
+        <ul>
+            <li class="sidebar-nav-item">
+                <a href="/dashboard/index.html" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">📊</span>
+                    Dashboard
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="/resources/index.html" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">📚</span>
+                    Resources
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="/forums/index.html" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">💬</span>
+                    Forums
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="/events/index.html" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">📅</span>
+                    Events
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="/profile/index.html" class="sidebar-nav-link">
+                    <span class="sidebar-nav-icon">👤</span>
+                    Profile
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+<script>
+function toggleUserDropdown() {
+    const dropdown = document.getElementById('user-dropdown');
+    dropdown.classList.toggle('active');
+}
+
+function handleLogout(event) {
+    event.preventDefault();
+    if (window.authManager) {
+        authManager.logout();
+    }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('user-dropdown');
+    if (dropdown && !dropdown.contains(event.target)) {
+        dropdown.classList.remove('active');
+    }
+});
+
+// Set active link based on current page
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPath = window.location.pathname;
+    const links = document.querySelectorAll('.navbar-link, .sidebar-nav-link');
+    
+    links.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+});
+</script>

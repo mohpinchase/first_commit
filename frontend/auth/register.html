@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register for UniPeer">
+    <title>Register - UniPeer</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/auth.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">🎓 UniPeer</div>
+                <h1 class="auth-title">Join UniPeer</h1>
+                <p class="auth-subtitle">Create your account and start collaborating</p>
+            </div>
+            
+            <div id="error-message" class="auth-error" style="display: none;"></div>
+            
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">👤</span>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="form-input" 
+                            placeholder="Choose a username"
+                            required
+                            minlength="3"
+                        >
+                    </div>
+                    <div class="field-error" id="username-error"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">📧</span>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="Enter your email"
+                            required
+                        >
+                    </div>
+                    <div class="field-error" id="email-error"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">🔒</span>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input" 
+                            placeholder="Create a strong password"
+                            required
+                            minlength="8"
+                        >
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            👁️
+                        </button>
+                    </div>
+                    <div class="password-strength" id="password-strength" style="display: none;">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strength-fill"></div>
+                        </div>
+                        <div class="strength-text" id="strength-text"></div>
+                    </div>
+                    <div class="field-error" id="password-error"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password2" class="form-label">Confirm Password</label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">🔒</span>
+                        <input 
+                            type="password" 
+                            id="password2" 
+                            name="password2" 
+                            class="form-input" 
+                            placeholder="Confirm your password"
+                            required
+                        >
+                        <button type="button" class="password-toggle" onclick="togglePassword('password2')">
+                            👁️
+                        </button>
+                    </div>
+                    <div class="field-error" id="password2-error"></div>
+                </div>
+                
+                <div class="terms-checkbox">
+                    <label>
+                        <input type="checkbox" id="terms" name="terms" required>
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="auth-submit btn">
+                    Create Account
+                </button>
+            </form>
+            
+            <div class="auth-divider">or</div>
+            
+            <div class="social-login">
+                <button class="social-btn" type="button">
+                    <span class="social-icon">🔵</span>
+                    Continue with Google
+                </button>
+                <button class="social-btn" type="button">
+                    <span class="social-icon">📘</span>
+                    Continue with Facebook
+                </button>
+            </div>
+            
+            <div class="auth-footer">
+                Already have an account? <a href="/auth/login.html">Sign in</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    
+    <script>
+        // Redirect if already authenticated
+        authManager.redirectIfAuthenticated();
+        
+        const registerForm = document.getElementById('register-form');
+        const errorMessage = document.getElementById('error-message');
+        const passwordInput = document.getElementById('password');
+        const passwordStrength = document.getElementById('password-strength');
+        
+        // Password strength indicator
+        passwordInput.addEventListener('input', (e) => {
+            const password = e.target.value;
+            
+            if (password.length === 0) {
+                passwordStrength.style.display = 'none';
+                return;
+            }
+            
+            passwordStrength.style.display = 'block';
+            const validation = validatePassword(password);
+            const strengthFill = document.getElementById('strength-fill');
+            const strengthText = document.getElementById('strength-text');
+            
+            if (validation.isValid) {
+                strengthFill.className = 'strength-fill strength-strong';
+                strengthText.textContent = 'Strong password';
+                passwordInput.classList.remove('error');
+                passwordInput.classList.add('success');
+            } else if (password.length >= 8) {
+                strengthFill.className = 'strength-fill strength-medium';
+                strengthText.textContent = 'Medium password';
+                passwordInput.classList.remove('error', 'success');
+            } else {
+                strengthFill.className = 'strength-fill strength-weak';
+                strengthText.textContent = 'Weak password';
+                passwordInput.classList.remove('success');
+            }
+        });
+        
+        // Handle registration form submission
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Hide previous errors
+            errorMessage.style.display = 'none';
+            document.querySelectorAll('.field-error').forEach(el => {
+                el.textContent = '';
+                el.classList.remove('show');
+            });
+            
+            // Get form data
+            const formData = new FormData(registerForm);
+            const userData = {
+                username: formData.get('username'),
+                email: formData.get('email'),
+                password: formData.get('password'),
+                password2: formData.get('password2')
+            };
+            
+            // Validate passwords match
+            if (userData.password !== userData.password2) {
+                const error = document.getElementById('password2-error');
+                error.textContent = 'Passwords do not match';
+                error.classList.add('show');
+                return;
+            }
+            
+            // Validate password strength
+            const passwordValidation = validatePassword(userData.password);
+            if (!passwordValidation.isValid) {
+                const error = document.getElementById('password-error');
+                error.textContent = passwordValidation.errors[0];
+                error.classList.add('show');
+                return;
+            }
+            
+            // Disable submit button and show loading
+            const submitBtn = registerForm.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            
+            try {
+                // Attempt registration
+                const result = await authManager.register(userData);
+                
+                if (result.success) {
+                    showNotification('Registration successful! Redirecting...', 'success');
+                    
+                    // Redirect to dashboard or login
+                    setTimeout(() => {
+                        window.location.href = result.user ? '/dashboard/index.html' : '/auth/login.html';
+                    }, 1000);
+                } else {
+                    // Show errors
+                    if (result.errors) {
+                        // Display field-specific errors
+                        Object.keys(result.errors).forEach(field => {
+                            const errorEl = document.getElementById(`${field}-error`);
+                            if (errorEl && result.errors[field]) {
+                                const errorMsg = Array.isArray(result.errors[field]) 
+                                    ? result.errors[field][0] 
+                                    : result.errors[field];
+                                errorEl.textContent = errorMsg;
+                                errorEl.classList.add('show');
+                            }
+                        });
+                    } else {
+                        errorMessage.textContent = result.message || 'Registration failed. Please try again.';
+                        errorMessage.style.display = 'block';
+                    }
+                    
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                }
+            } catch (error) {
+                errorMessage.textContent = 'An error occurred. Please try again.';
+                errorMessage.style.display = 'block';
+                
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+            }
+        });
+        
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+    </script>
+</body>
+</html>

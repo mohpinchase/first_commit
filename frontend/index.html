@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UniPeer - AI-Powered Student Collaboration Platform">
+    <title>UniPeer - AI-Powered Student Collaboration</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    
+    <style>
+        /* Landing Page Specific Styles */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: var(--spacing-2xl);
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: var(--spacing-lg);
+            color: white;
+        }
+        
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin-bottom: var(--spacing-2xl);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hero-buttons .btn {
+            font-size: var(--font-size-lg);
+            padding: var(--spacing-lg) var(--spacing-2xl);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .features {
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            background-color: var(--bg-secondary);
+        }
+        
+        .section-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--spacing-2xl);
+        }
+        
+        .section-intro h2 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-2xl);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background-color: var(--bg-primary);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .feature-card h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+        
+        .testimonials {
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            background-color: var(--bg-primary);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .testimonial-text {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .author-info h4 {
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+        
+        .author-info p {
+            font-size: var(--font-size-sm);
+            color: var(--text-muted);
+            margin: 0;
+        }
+        
+        .cta-section {
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-md);
+            color: white;
+        }
+        
+        .cta-section p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-2xl);
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .stats-section {
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            background-color: var(--bg-secondary);
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content container">
+            <h1>Welcome to UniPeer 🎓✨</h1>
+            <p>AI-Powered Student Collaboration Platform connecting students worldwide for better learning experiences 📚💡</p>
+            <div class="hero-buttons">
+                <a href="/auth/register.html" class="btn btn-accent">Get Started 🚀</a>
+                <a href="/auth/login.html" class="btn btn-outline">Sign In</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Why Choose UniPeer? ⭐</h2>
+                <p>Everything you need to collaborate, learn, and succeed with your peers</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Resource Sharing</h3>
+                    <p>Access and share study materials, notes, and resources with students around the world</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Discussion Forums</h3>
+                    <p>Engage in meaningful discussions, ask questions, and get help from your peers</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Study Events</h3>
+                    <p>Join or create study groups, workshops, and collaborative learning events</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered</h3>
+                    <p>Smart recommendations and personalized learning paths powered by artificial intelligence</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global Community</h3>
+                    <p>Connect with students from universities and colleges worldwide</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Track Progress</h3>
+                    <p>Monitor your learning journey and celebrate achievements with your community</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Active Students</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5K+</div>
+                    <div class="stat-label">Resources Shared</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2K+</div>
+                    <div class="stat-label">Study Events</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Universities</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-intro">
+                <h2>What Students Say 💭</h2>
+                <p>Hear from our community members about their experience</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"UniPeer has transformed the way I study. The resource sharing feature is incredible, and I've made amazing study buddies from around the world! 🌟"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SK</div>
+                        <div class="author-info">
+                            <h4>Sarah Kim</h4>
+                            <p>Computer Science, MIT</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The discussion forums are so active and helpful. Whenever I'm stuck on a problem, there's always someone ready to help. Best study platform ever! 🎓"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <h4>Marcus Johnson</h4>
+                            <p>Engineering, Stanford</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I love the study events feature! I've attended so many interesting workshops and collaborative sessions. UniPeer brings students together in the best way. ✨"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LP</div>
+                        <div class="author-info">
+                            <h4>Lisa Patel</h4>
+                            <p>Medicine, Harvard</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Learning Journey? 🚀</h2>
+            <p>Join thousands of students collaborating and succeeding together</p>
+            <div class="hero-buttons">
+                <a href="/auth/register.html" class="btn btn-accent">Create Free Account</a>
+                <a href="/auth/login.html" class="btn btn-outline" style="border-color: white; color: white;">Sign In</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        🌙
+    </button>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    
+    <script>
+        // Load footer
+        loadComponent('/components/footer.html', '#footer-container');
+        
+        // Redirect to dashboard if already authenticated
+        if (authManager.isAuthenticated()) {
+            window.location.href = '/dashboard/index.html';
+        }
+    </script>
+</body>
+</html>

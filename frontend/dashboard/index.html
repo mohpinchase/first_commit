@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UniPeer Dashboard">
+    <title>Dashboard - UniPeer</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <!-- Welcome Section -->
+        <div id="user-info"></div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid" id="stats-container">
+            <!-- Stats will be dynamically loaded -->
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <a href="/resources/upload.html" class="quick-action-btn">
+                <span class="quick-action-icon">📤</span>
+                <span class="quick-action-text">Upload Resource</span>
+            </a>
+            <button class="quick-action-btn" onclick="document.getElementById('create-forum-modal').style.display='flex'">
+                <span class="quick-action-icon">💬</span>
+                <span class="quick-action-text">Start Discussion</span>
+            </button>
+            <button class="quick-action-btn" onclick="document.getElementById('create-event-modal').style.display='flex'">
+                <span class="quick-action-icon">📅</span>
+                <span class="quick-action-text">Create Event</span>
+            </button>
+            <a href="/profile/index.html" class="quick-action-btn">
+                <span class="quick-action-icon">👤</span>
+                <span class="quick-action-text">Edit Profile</span>
+            </a>
+        </div>
+        
+        <!-- Recent Resources Section -->
+        <div class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Recent Resources 📚</h2>
+                <a href="/resources/index.html" class="section-link">View All →</a>
+            </div>
+            <div class="grid grid-2" id="recent-resources">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+        
+        <!-- Active Forums Section -->
+        <div class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Active Discussions 💬</h2>
+                <a href="/forums/index.html" class="section-link">View All →</a>
+            </div>
+            <div class="grid grid-2" id="active-forums">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+        
+        <!-- Upcoming Events Section -->
+        <div class="dashboard-section">
+            <div class="section-header">
+                <h2 class="section-title">Upcoming Events 📅</h2>
+                <a href="/events/index.html" class="section-link">View All →</a>
+            </div>
+            <div class="grid grid-2" id="upcoming-events">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        🌙
+    </button>
+    
+    <!-- Create Forum Modal -->
+    <div id="create-forum-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Start a Discussion</h2>
+                <button class="modal-close" onclick="this.closest('.modal').style.display='none'">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="create-forum-form">
+                    <div class="form-group">
+                        <label for="forum-title" class="form-label">Title</label>
+                        <input type="text" id="forum-title" name="title" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="forum-description" class="form-label">Description</label>
+                        <textarea id="forum-description" name="description" class="form-textarea" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="forum-category" class="form-label">Category</label>
+                        <select id="forum-category" name="category" class="form-select" required>
+                            <option value="">Select category</option>
+                            <option value="General">General</option>
+                            <option value="Academic">Academic</option>
+                            <option value="Career">Career</option>
+                            <option value="Social">Social</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').style.display='none'">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Discussion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Create Event Modal -->
+    <div id="create-event-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create Event</h2>
+                <button class="modal-close" onclick="this.closest('.modal').style.display='none'">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="create-event-form">
+                    <div class="form-group">
+                        <label for="event-title" class="form-label">Event Title</label>
+                        <input type="text" id="event-title" name="title" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-description" class="form-label">Description</label>
+                        <textarea id="event-description" name="description" class="form-textarea" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-date" class="form-label">Date</label>
+                        <input type="date" id="event-date" name="event_date" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-time" class="form-label">Time</label>
+                        <input type="time" id="event-time" name="event_time" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-location" class="form-label">Location</label>
+                        <input type="text" id="event-location" name="location" class="form-input" placeholder="Online or physical location" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').style.display='none'">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Event</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/dashboard.js"></script>
+    
+    <script>
+        // Handle create forum form submission
+        document.getElementById('create-forum-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = {
+                title: formData.get('title'),
+                description: formData.get('description'),
+                category: formData.get('category')
+            };
+            
+            try {
+                const response = await api.post('/forums/forums/', data);
+                showNotification('Discussion created successfully!', 'success');
+                document.getElementById('create-forum-modal').style.display = 'none';
+                e.target.reset();
+                // Reload forums
+                loadDashboardData();
+            } catch (error) {
+                showNotification('Failed to create discussion', 'error');
+            }
+        });
+        
+        // Handle create event form submission
+        document.getElementById('create-event-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = {
+                title: formData.get('title'),
+                description: formData.get('description'),
+                event_date: formData.get('event_date'),
+                event_time: formData.get('event_time'),
+                location: formData.get('location')
+            };
+            
+            try {
+                const response = await api.post('/events/events/', data);
+                showNotification('Event created successfully!', 'success');
+                document.getElementById('create-event-modal').style.display = 'none';
+                e.target.reset();
+                // Reload events
+                loadDashboardData();
+            } catch (error) {
+                showNotification('Failed to create event', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

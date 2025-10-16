@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Upload Resource - UniPeer">
+    <title>Upload Resource - UniPeer</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/resources.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    
+    <!-- Main Content -->
+    <div class="upload-container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="/resources/index.html" class="breadcrumb-link">Resources</a>
+            </div>
+            <span class="breadcrumb-separator">›</span>
+            <div class="breadcrumb-item">
+                <span class="breadcrumb-current">Upload</span>
+            </div>
+        </div>
+        
+        <div class="upload-card">
+            <h2>Upload New Resource 📤</h2>
+            <p class="text-secondary">Share your knowledge with the community</p>
+            
+            <form id="upload-form">
+                <!-- File Upload Area -->
+                <div class="file-upload-area" id="file-upload-area">
+                    <div class="upload-icon">📎</div>
+                    <div class="upload-text">Click to upload or drag and drop</div>
+                    <div class="upload-hint">PDF, DOC, PPT, Video, or any educational file (Max 100MB)</div>
+                    <input type="file" id="file" name="file" class="file-input" accept="*/*">
+                </div>
+                
+                <!-- File Preview -->
+                <div id="file-preview"></div>
+                
+                <!-- Resource Details -->
+                <div class="form-group">
+                    <label for="title" class="form-label">Resource Title *</label>
+                    <input 
+                        type="text" 
+                        id="title" 
+                        name="title" 
+                        class="form-input" 
+                        placeholder="e.g., Introduction to Data Structures"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea 
+                        id="description" 
+                        name="description" 
+                        class="form-textarea" 
+                        placeholder="Describe what this resource covers..."
+                        rows="4"
+                    ></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="resource_type" class="form-label">Resource Type *</label>
+                    <select id="resource_type" name="resource_type" class="form-select" required>
+                        <option value="">Select type</option>
+                        <option value="notes">📝 Notes</option>
+                        <option value="video">🎥 Video</option>
+                        <option value="book">📖 Book</option>
+                        <option value="assignment">📋 Assignment</option>
+                        <option value="project">💼 Project</option>
+                        <option value="slides">📊 Slides</option>
+                        <option value="code">💻 Code</option>
+                        <option value="other">📄 Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject" class="form-label">Subject/Topic</label>
+                    <input 
+                        type="text" 
+                        id="subject" 
+                        name="subject" 
+                        class="form-input" 
+                        placeholder="e.g., Computer Science, Mathematics"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="tags" class="form-label">Tags (comma-separated)</label>
+                    <input 
+                        type="text" 
+                        id="tags" 
+                        name="tags" 
+                        class="form-input" 
+                        placeholder="e.g., algorithms, python, tutorial"
+                    >
+                    <div class="form-help">Add tags to help others find your resource</div>
+                </div>
+                
+                <div class="flex justify-between items-center gap-md mt-xl">
+                    <a href="/resources/index.html" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Upload Resource</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        🌙
+    </button>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/resources.js"></script>
+    
+    <script>
+        // Initialize upload page
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initResourceUpload);
+        } else {
+            initResourceUpload();
+        }
+        
+        // File upload area interactions
+        const fileUploadArea = document.getElementById('file-upload-area');
+        const fileInput = document.getElementById('file');
+        
+        // Click to upload
+        fileUploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        // Drag and drop
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.add('dragover');
+        });
+        
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.classList.remove('dragover');
+        });
+        
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                fileInput.dispatchEvent(new Event('change'));
+            }
+        });
+    </script>
+</body>
+</html>

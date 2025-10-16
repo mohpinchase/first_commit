@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login to UniPeer">
+    <title>Login - UniPeer</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/auth.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">🎓 UniPeer</div>
+                <h1 class="auth-title">Welcome Back!</h1>
+                <p class="auth-subtitle">Sign in to continue your learning journey</p>
+            </div>
+            
+            <div id="error-message" class="auth-error" style="display: none;"></div>
+            
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email or Username</label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">📧</span>
+                        <input 
+                            type="text" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="Enter your email or username"
+                            required
+                        >
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">🔒</span>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input" 
+                            placeholder="Enter your password"
+                            required
+                        >
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="auth-submit btn">
+                    Sign In
+                </button>
+            </form>
+            
+            <div class="auth-divider">or</div>
+            
+            <div class="social-login">
+                <button class="social-btn" type="button">
+                    <span class="social-icon">🔵</span>
+                    Continue with Google
+                </button>
+                <button class="social-btn" type="button">
+                    <span class="social-icon">📘</span>
+                    Continue with Facebook
+                </button>
+            </div>
+            
+            <div class="auth-footer">
+                Don't have an account? <a href="/auth/register.html">Sign up</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    
+    <script>
+        // Redirect if already authenticated
+        authManager.redirectIfAuthenticated();
+        
+        // Handle login form submission
+        const loginForm = document.getElementById('login-form');
+        const errorMessage = document.getElementById('error-message');
+        
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Hide previous errors
+            errorMessage.style.display = 'none';
+            
+            // Get form data
+            const formData = new FormData(loginForm);
+            const credentials = {
+                username: formData.get('email'),
+                password: formData.get('password')
+            };
+            
+            // Disable submit button and show loading
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            
+            try {
+                // Attempt login
+                const result = await authManager.login(credentials);
+                
+                if (result.success) {
+                    showNotification('Login successful! Redirecting...', 'success');
+                    
+                    // Redirect to dashboard
+                    setTimeout(() => {
+                        window.location.href = '/dashboard/index.html';
+                    }, 1000);
+                } else {
+                    // Show error
+                    errorMessage.textContent = result.message || 'Invalid credentials. Please try again.';
+                    errorMessage.style.display = 'block';
+                    
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                }
+            } catch (error) {
+                errorMessage.textContent = 'An error occurred. Please try again.';
+                errorMessage.style.display = 'block';
+                
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+            }
+        });
+        
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+    </script>
+</body>
+</html>
