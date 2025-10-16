@@ -1,0 +1,56 @@
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="/index.html" class="brand" data-link>
+      <span class="logo">🎓</span>
+      <span class="brand-text">UniPeer</span>
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/dashboard/index.html" data-link>Dashboard</a></li>
+      <li><a href="/forums/index.html" data-link>Forums</a></li>
+      <li><a href="/resources/index.html" data-link>Resources</a></li>
+      <li><a href="/events/index.html" data-link>Events</a></li>
+      <li><a href="/profile/index.html" data-link>Profile</a></li>
+    </ul>
+
+    <div class="actions">
+      <div class="user-chip" data-requires-auth="true">
+        <span class="avatar" id="user-initials">U</span>
+        <span class="name" id="user-name-short">Student</span>
+      </div>
+      <button class="btn btn-ghost" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+      <button class="btn btn-outline" data-action="logout" data-requires-auth="true">Logout</button>
+      <a class="btn btn-primary" href="/auth/login.html" data-hide-when-auth="true" data-link>Login</a>
+      <a class="btn btn-accent" href="/auth/register.html" data-hide-when-auth="true" data-link>Register</a>
+    </div>
+  </div>
+
+  <div class="backdrop" id="drawer-backdrop"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="brand">
+        <span class="logo">🎓</span>
+        <span class="brand-text">UniPeer</span>
+      </div>
+      <button class="close-drawer" id="close-drawer" aria-label="Close menu">✖</button>
+    </div>
+    <ul>
+      <li><a href="/dashboard/index.html" data-link>Dashboard</a></li>
+      <li><a href="/forums/index.html" data-link>Forums</a></li>
+      <li><a href="/resources/index.html" data-link>Resources</a></li>
+      <li><a href="/events/index.html" data-link>Events</a></li>
+      <li><a href="/profile/index.html" data-link>Profile</a></li>
+      <li class="divider"></li>
+      <li><button class="btn btn-ghost" id="theme-toggle-mobile">Toggle Theme</button></li>
+      <li><button class="btn btn-outline" data-action="logout" data-requires-auth="true">Logout</button></li>
+      <li><a class="btn btn-primary" href="/auth/login.html" data-hide-when-auth="true" data-link>Login</a></li>
+      <li><a class="btn btn-accent" href="/auth/register.html" data-hide-when-auth="true" data-link>Register</a></li>
+    </ul>
+  </aside>
+</nav>

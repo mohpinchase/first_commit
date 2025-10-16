@@ -1,0 +1,9 @@
+/* Auth pages */
+.auth-wrapper { display: grid; place-items: center; min-height: calc(100dvh - 120px); }
+.auth-card { width: min(560px, 92%); }
+.auth-header { text-align: center; margin-bottom: 16px; }
+.auth-header h1 { margin: 0 0 6px; }
+.auth-footer { text-align: center; margin-top: 12px; color: var(--color-muted); }
+.auth-footer a { color: var(--primary); text-decoration: none; }
+.form-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+.field-group { margin-bottom: 12px; }

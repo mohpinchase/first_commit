@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forum Post • UniPeer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/forums.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="section">
+    <div class="container">
+      <article class="card post-item">
+        <h1>How to prep for data structures exam?</h1>
+        <div class="post-meta">
+          <span>by Priya</span>
+          <span>Posted 2h ago</span>
+          <span class="badge">Algorithms</span>
+        </div>
+        <p class="muted">Share tips, resources, and practice strategies for the upcoming exam.</p>
+      </article>
+
+      <section class="section">
+        <div class="card">
+          <h3>Replies</h3>
+          <div class="post-list">
+            <div class="card">
+              <p>Start with arrays and linked lists, then trees and graphs. Practice LeetCode easy/medium.</p>
+              <div class="post-meta"><span>by Aisha</span><span>1h ago</span></div>
+            </div>
+            <div class="card">
+              <p>Don't forget to time yourself. Also, re-implement common data structures.</p>
+              <div class="post-meta"><span>by Marco</span><span>30m ago</span></div>
+            </div>
+          </div>
+          <div class="reply-box">
+            <label class="label" for="reply">Add a reply</label>
+            <textarea id="reply" rows="3" placeholder="Write your reply..."></textarea>
+            <div style="margin-top:8px; display:flex; gap:8px; justify-content:flex-end;">
+              <button class="btn btn-outline">Cancel</button>
+              <button class="btn btn-primary">Reply</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/auth.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/forums.js"></script>
+</body>
+</html>

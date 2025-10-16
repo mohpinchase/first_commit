@@ -1,0 +1,6 @@
+/* Forums */
+.forum-list { display: grid; gap: 12px; }
+.post-list { display: grid; gap: 12px; }
+.post-item { display: grid; gap: 8px; }
+.post-meta { color: var(--color-muted); font-size: 0.9rem; display: flex; gap: 12px; }
+.reply-box { margin-top: 12px; }

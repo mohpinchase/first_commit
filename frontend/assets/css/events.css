@@ -1,0 +1,10 @@
+/* Events */
+.event-grid { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); }
+.event-item { display: grid; gap: 6px; }
+
+@media (max-width: 860px) {
+  .event-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .event-grid { grid-template-columns: 1fr; }
+}
