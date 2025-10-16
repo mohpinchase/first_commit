@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UniPeer Events">
+    <title>Events - UniPeer</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/events.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    
+    <!-- Main Content -->
+    <div class="events-container">
+        <!-- Events Header -->
+        <div class="events-header">
+            <h1>Study Events 📅</h1>
+            <p>Join study groups, workshops, and collaborative learning sessions</p>
+        </div>
+        
+        <!-- Events Toolbar -->
+        <div class="events-toolbar">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input 
+                    type="text" 
+                    id="event-search" 
+                    class="search-input" 
+                    placeholder="Search events..."
+                >
+            </div>
+            <select id="type-filter" class="form-select">
+                <option value="all">All Types</option>
+                <option value="workshop">Workshop</option>
+                <option value="study-group">Study Group</option>
+                <option value="seminar">Seminar</option>
+                <option value="hackathon">Hackathon</option>
+                <option value="social">Social</option>
+            </select>
+            <button class="btn btn-primary" id="create-event-btn">
+                ➕ Create Event
+            </button>
+        </div>
+        
+        <!-- Events List -->
+        <div id="events-container">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        🌙
+    </button>
+    
+    <!-- Create Event Modal -->
+    <div id="create-event-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create New Event</h2>
+                <button class="modal-close" onclick="this.closest('.modal').style.display='none'">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="create-event-form">
+                    <div class="form-group">
+                        <label for="title" class="form-label">Event Title *</label>
+                        <input 
+                            type="text" 
+                            id="title" 
+                            name="title" 
+                            class="form-input" 
+                            placeholder="e.g., Python Study Group"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description" class="form-label">Description *</label>
+                        <textarea 
+                            id="description" 
+                            name="description" 
+                            class="form-textarea" 
+                            placeholder="Describe what this event is about..."
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event_date" class="form-label">Date *</label>
+                        <input 
+                            type="date" 
+                            id="event_date" 
+                            name="event_date" 
+                            class="form-input" 
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event_time" class="form-label">Time *</label>
+                        <input 
+                            type="time" 
+                            id="event_time" 
+                            name="event_time" 
+                            class="form-input" 
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location" class="form-label">Location *</label>
+                        <input 
+                            type="text" 
+                            id="location" 
+                            name="location" 
+                            class="form-input" 
+                            placeholder="Online or physical location"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event_type" class="form-label">Event Type *</label>
+                        <select id="event_type" name="event_type" class="form-select" required>
+                            <option value="">Select type</option>
+                            <option value="workshop">Workshop</option>
+                            <option value="study-group">Study Group</option>
+                            <option value="seminar">Seminar</option>
+                            <option value="hackathon">Hackathon</option>
+                            <option value="social">Social</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="max_participants" class="form-label">Max Participants</label>
+                        <input 
+                            type="number" 
+                            id="max_participants" 
+                            name="max_participants" 
+                            class="form-input" 
+                            placeholder="Leave empty for unlimited"
+                            min="1"
+                        >
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').style.display='none'">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Create Event
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/events.js"></script>
+    
+    <script>
+        // Initialize events page
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initEvents);
+        } else {
+            initEvents();
+        }
+    </script>
+</body>
+</html>

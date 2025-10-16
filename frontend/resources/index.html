@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UniPeer Resources">
+    <title>Resources - UniPeer</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/resources.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    
+    <!-- Main Content -->
+    <div class="resources-container">
+        <!-- Resources Header -->
+        <div class="resources-header">
+            <h1>Learning Resources 📚</h1>
+            <p>Discover and share study materials, notes, and educational content</p>
+        </div>
+        
+        <!-- Resources Toolbar -->
+        <div class="resources-toolbar">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input 
+                    type="text" 
+                    id="resource-search" 
+                    class="search-input" 
+                    placeholder="Search resources..."
+                >
+            </div>
+            <select id="type-filter" class="form-select">
+                <option value="all">All Types</option>
+                <option value="notes">Notes</option>
+                <option value="video">Videos</option>
+                <option value="book">Books</option>
+                <option value="assignment">Assignments</option>
+                <option value="project">Projects</option>
+                <option value="slides">Slides</option>
+                <option value="code">Code</option>
+                <option value="other">Other</option>
+            </select>
+            <a href="/resources/upload.html" class="btn btn-primary">
+                ➕ Upload Resource
+            </a>
+        </div>
+        
+        <!-- Resources List -->
+        <div id="resources-container" class="grid grid-2">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        🌙
+    </button>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/resources.js"></script>
+    
+    <script>
+        // Initialize resources page
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initResources);
+        } else {
+            initResources();
+        }
+    </script>
+</body>
+</html>

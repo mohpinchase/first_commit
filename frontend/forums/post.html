@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Forum Discussion - UniPeer">
+    <title>Discussion - UniPeer</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/forums.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    
+    <!-- Main Content -->
+    <div class="forums-container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="/forums/index.html" class="breadcrumb-link">Forums</a>
+            </div>
+            <span class="breadcrumb-separator">›</span>
+            <div class="breadcrumb-item">
+                <span class="breadcrumb-current">Discussion</span>
+            </div>
+        </div>
+        
+        <!-- Forum Details -->
+        <div id="forum-details">
+            <div class="loading-spinner"></div>
+        </div>
+        
+        <!-- Create Post Form -->
+        <div class="post-form">
+            <h3>Add Your Response</h3>
+            <form id="create-post-form">
+                <div class="form-group">
+                    <textarea 
+                        name="content" 
+                        class="form-textarea" 
+                        placeholder="Share your thoughts..."
+                        required
+                        rows="5"
+                    ></textarea>
+                </div>
+                <div class="flex justify-between items-center">
+                    <p class="text-sm text-secondary">Be respectful and constructive in your response</p>
+                    <button type="submit" class="btn btn-primary">
+                        Post Response
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Posts List -->
+        <div id="posts-container">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        🌙
+    </button>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/forums.js"></script>
+    
+    <script>
+        // Initialize forum post page
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initForumPost);
+        } else {
+            initForumPost();
+        }
+    </script>
+</body>
+</html>

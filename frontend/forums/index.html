@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UniPeer Forums">
+    <title>Forums - UniPeer</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/forums.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    
+    <!-- Main Content -->
+    <div class="forums-container">
+        <!-- Forums Header -->
+        <div class="forums-header">
+            <h1>Discussion Forums 💬</h1>
+            <p>Connect with fellow students, ask questions, and share knowledge</p>
+        </div>
+        
+        <!-- Forums Toolbar -->
+        <div class="forums-toolbar">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input 
+                    type="text" 
+                    id="forum-search" 
+                    class="search-input" 
+                    placeholder="Search discussions..."
+                >
+            </div>
+            <select id="category-filter" class="form-select">
+                <option value="all">All Categories</option>
+                <option value="General">General</option>
+                <option value="Academic">Academic</option>
+                <option value="Career">Career</option>
+                <option value="Social">Social</option>
+                <option value="Technical">Technical</option>
+            </select>
+            <button class="btn btn-primary" id="create-forum-btn">
+                ➕ New Discussion
+            </button>
+        </div>
+        
+        <!-- Forums List -->
+        <div id="forums-container">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        🌙
+    </button>
+    
+    <!-- Create Forum Modal -->
+    <div id="create-forum-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Start a New Discussion</h2>
+                <button class="modal-close" onclick="this.closest('.modal').style.display='none'">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="create-forum-form">
+                    <div class="form-group">
+                        <label for="title" class="form-label">Discussion Title</label>
+                        <input 
+                            type="text" 
+                            id="title" 
+                            name="title" 
+                            class="form-input" 
+                            placeholder="What would you like to discuss?"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea 
+                            id="description" 
+                            name="description" 
+                            class="form-textarea" 
+                            placeholder="Provide more details about your discussion..."
+                            required
+                        ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="category" class="form-label">Category</label>
+                        <select id="category" name="category" class="form-select" required>
+                            <option value="">Select a category</option>
+                            <option value="General">General</option>
+                            <option value="Academic">Academic</option>
+                            <option value="Career">Career</option>
+                            <option value="Social">Social</option>
+                            <option value="Technical">Technical</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').style.display='none'">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Create Discussion
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    <script src="/assets/js/forums.js"></script>
+    
+    <script>
+        // Initialize forums page
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initForums);
+        } else {
+            initForums();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="User Profile - UniPeer">
+    <title>Profile - UniPeer</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    
+    <style>
+        .profile-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            color: white;
+            margin-bottom: var(--spacing-2xl);
+            text-align: center;
+        }
+        
+        .profile-avatar-large {
+            width: 120px;
+            height: 120px;
+            border-radius: var(--radius-full);
+            margin: 0 auto var(--spacing-lg);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--primary-color);
+            border: 5px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .profile-header h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .profile-stat {
+            text-align: center;
+        }
+        
+        .profile-stat-number {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+        }
+        
+        .profile-stat-label {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+        }
+        
+        .profile-content {
+            background-color: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .profile-section {
+            margin-bottom: var(--spacing-2xl);
+            padding-bottom: var(--spacing-2xl);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .profile-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .profile-section h2 {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .profile-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .info-field {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .info-label {
+            font-size: var(--font-size-sm);
+            color: var(--text-muted);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .info-value {
+            font-size: var(--font-size-base);
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    
+    <!-- Main Content -->
+    <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-avatar-large" id="profile-avatar">U</div>
+            <h1 id="profile-name">Loading...</h1>
+            <p id="profile-bio">Student | Learner | Collaborator</p>
+            
+            <div class="profile-stats">
+                <div class="profile-stat">
+                    <div class="profile-stat-number" id="resources-count">0</div>
+                    <div class="profile-stat-label">Resources</div>
+                </div>
+                <div class="profile-stat">
+                    <div class="profile-stat-number" id="forums-count">0</div>
+                    <div class="profile-stat-label">Discussions</div>
+                </div>
+                <div class="profile-stat">
+                    <div class="profile-stat-number" id="events-count">0</div>
+                    <div class="profile-stat-label">Events</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Profile Content -->
+        <div class="profile-content">
+            <!-- Personal Information -->
+            <div class="profile-section">
+                <div class="flex justify-between items-center mb-lg">
+                    <h2>Personal Information</h2>
+                    <button class="btn btn-primary" id="edit-profile-btn">Edit Profile</button>
+                </div>
+                
+                <div class="profile-info-grid">
+                    <div class="info-field">
+                        <span class="info-label">Username</span>
+                        <span class="info-value" id="info-username">-</span>
+                    </div>
+                    <div class="info-field">
+                        <span class="info-label">Email</span>
+                        <span class="info-value" id="info-email">-</span>
+                    </div>
+                    <div class="info-field">
+                        <span class="info-label">University</span>
+                        <span class="info-value" id="info-university">-</span>
+                    </div>
+                    <div class="info-field">
+                        <span class="info-label">Major</span>
+                        <span class="info-value" id="info-major">-</span>
+                    </div>
+                    <div class="info-field">
+                        <span class="info-label">Year</span>
+                        <span class="info-value" id="info-year">-</span>
+                    </div>
+                    <div class="info-field">
+                        <span class="info-label">Member Since</span>
+                        <span class="info-value" id="info-joined">-</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings -->
+            <div class="profile-section" id="settings">
+                <h2>Settings</h2>
+                
+                <div class="form-group">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <label class="form-label">Dark Mode</label>
+                            <p class="text-sm text-secondary">Switch between light and dark theme</p>
+                        </div>
+                        <button class="btn btn-outline" onclick="toggleDarkMode()">Toggle Theme</button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <label class="form-label">Email Notifications</label>
+                            <p class="text-sm text-secondary">Receive updates about your activity</p>
+                        </div>
+                        <input type="checkbox" id="email-notifications" checked>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <label class="form-label">Privacy</label>
+                            <p class="text-sm text-secondary">Make your profile visible to others</p>
+                        </div>
+                        <input type="checkbox" id="profile-public" checked>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="profile-section">
+                <h2>Account</h2>
+                <div class="flex gap-md">
+                    <button class="btn btn-secondary" onclick="handleChangePassword()">
+                        Change Password
+                    </button>
+                    <button class="btn" style="background-color: var(--error-color); color: white;" onclick="handleLogout()">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        🌙
+    </button>
+    
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Edit Profile</h2>
+                <button class="modal-close" onclick="this.closest('.modal').style.display='none'">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-profile-form">
+                    <div class="form-group">
+                        <label for="bio" class="form-label">Bio</label>
+                        <textarea id="bio" name="bio" class="form-textarea" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="university" class="form-label">University</label>
+                        <input type="text" id="university" name="university" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="major" class="form-label">Major</label>
+                        <input type="text" id="major" name="major" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="year" class="form-label">Year</label>
+                        <select id="year" name="year" class="form-select">
+                            <option value="">Select year</option>
+                            <option value="Freshman">Freshman</option>
+                            <option value="Sophomore">Sophomore</option>
+                            <option value="Junior">Junior</option>
+                            <option value="Senior">Senior</option>
+                            <option value="Graduate">Graduate</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').style.display='none'">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/utils.js"></script>
+    
+    <script>
+        // Require authentication
+        authManager.requireAuth();
+        
+        // Load user profile
+        async function loadProfile() {
+            try {
+                const user = await authManager.fetchCurrentUser();
+                
+                // Update profile display
+                const avatar = document.getElementById('profile-avatar');
+                const name = document.getElementById('profile-name');
+                const bio = document.getElementById('profile-bio');
+                
+                if (user.username) {
+                    avatar.textContent = user.username[0].toUpperCase();
+                    name.textContent = user.username;
+                }
+                
+                if (user.bio) {
+                    bio.textContent = user.bio;
+                }
+                
+                // Update info fields
+                document.getElementById('info-username').textContent = user.username || '-';
+                document.getElementById('info-email').textContent = user.email || '-';
+                document.getElementById('info-university').textContent = user.university || '-';
+                document.getElementById('info-major').textContent = user.major || '-';
+                document.getElementById('info-year').textContent = user.year || '-';
+                
+                if (user.date_joined) {
+                    document.getElementById('info-joined').textContent = formatDate(user.date_joined);
+                }
+                
+                // Populate edit form
+                if (user.bio) document.getElementById('bio').value = user.bio;
+                if (user.university) document.getElementById('university').value = user.university;
+                if (user.major) document.getElementById('major').value = user.major;
+                if (user.year) document.getElementById('year').value = user.year;
+                
+            } catch (error) {
+                console.error('Failed to load profile:', error);
+                showNotification('Failed to load profile', 'error');
+            }
+        }
+        
+        // Edit profile button
+        document.getElementById('edit-profile-btn').addEventListener('click', () => {
+            document.getElementById('edit-profile-modal').style.display = 'flex';
+        });
+        
+        // Handle profile update
+        document.getElementById('edit-profile-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = {
+                bio: formData.get('bio'),
+                university: formData.get('university'),
+                major: formData.get('major'),
+                year: formData.get('year')
+            };
+            
+            const result = await authManager.updateProfile(data);
+            
+            if (result.success) {
+                showNotification('Profile updated successfully!', 'success');
+                document.getElementById('edit-profile-modal').style.display = 'none';
+                loadProfile();
+            } else {
+                showNotification(result.message || 'Failed to update profile', 'error');
+            }
+        });
+        
+        function handleChangePassword() {
+            showNotification('Password change feature coming soon!', 'info');
+        }
+        
+        function handleLogout() {
+            if (confirm('Are you sure you want to logout?')) {
+                authManager.logout();
+            }
+        }
+        
+        // Load profile on page load
+        loadProfile();
+    </script>
+</body>
+</html>
