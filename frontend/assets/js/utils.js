@@ -1,4 +1,4 @@
-/* Utilities for UniPeer: component loader, toasts, theme, auth state */
+/* Utilities for UniPeer: component loader, toasts, theme, auth state, SPA helpers */
 const UniPeer = (() => {
   const API_BASE = 'http://localhost:8000/api';
 
@@ -9,15 +9,21 @@ const UniPeer = (() => {
     const placeholders = qsa('[data-component]');
     await Promise.all(placeholders.map(async el => {
       const url = el.getAttribute('data-component');
-      try {
-        const resp = await fetch(url, { cache: 'no-cache' });
-        const html = await resp.text();
-        el.innerHTML = html;
-      } catch (e) {
-        console.error('Failed to load component', url, e);
-      }
+      await loadComponent(el, url);
     }));
     initNavbarInteractions();
+  }
+
+  async function loadComponent(selectorOrEl, filePath) {
+    const el = typeof selectorOrEl === 'string' ? qs(selectorOrEl) : selectorOrEl;
+    if (!el || !filePath) return;
+    try {
+      const resp = await fetch(filePath, { cache: 'no-cache' });
+      const html = await resp.text();
+      el.innerHTML = html;
+    } catch (e) {
+      console.error('Failed to load component', filePath, e);
+    }
   }
 
   function toast(message, type = 'info', timeout = 3500) {
@@ -33,6 +39,14 @@ const UniPeer = (() => {
       host.classList.remove('show');
       setTimeout(() => host.remove(), 250);
     }, timeout);
+  }
+
+  function showNotification(message, type) {
+    toast(message, type);
+  }
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
   }
 
   function applyTheme(theme) {
@@ -67,7 +81,7 @@ const UniPeer = (() => {
     const drawer = qs('#mobile-drawer');
     const close = qs('#close-drawer');
     const themeBtns = qsa('#theme-toggle, #theme-toggle-mobile');
-    const logoutBtns = qsa('#logout-btn, #logout-btn-mobile');
+    const logoutBtns = qsa('[data-action="logout"], #logout-btn, #logout-btn-mobile');
 
     if (hamburger && drawer) {
       hamburger.addEventListener('click', () => {
@@ -106,6 +120,13 @@ const UniPeer = (() => {
     try {
       const me = await window.AuthManager?.getMe();
       setAuthState(Boolean(me));
+      const initialsEl = qs('#user-initials');
+      const nameShortEl = qs('#user-name-short');
+      if (me && (initialsEl || nameShortEl)) {
+        const initials = (me.first_name?.[0] || me.username?.[0] || 'U').toUpperCase();
+        if (initialsEl) initialsEl.textContent = initials;
+        if (nameShortEl) nameShortEl.textContent = me.first_name || me.username || 'Student';
+      }
     } catch {
       setAuthState(false);
     }
@@ -122,12 +143,16 @@ const UniPeer = (() => {
     qs,
     qsa,
     loadComponents,
+    loadComponent,
     toast,
+    showNotification,
+    validateEmail,
     applyTheme,
     toggleTheme,
     initThemeFromStorage,
     onReady,
     reflectAuthState,
+    initNavbarInteractions,
   };
 })();
 
